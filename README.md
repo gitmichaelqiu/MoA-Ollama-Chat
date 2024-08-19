@@ -76,9 +76,6 @@ OLLAMA_MAX_LOADED_MODELS=4
 
    ```shell
    conda activate moa
-   ```
-
-   ```shell
    gradio app.py
    ```
 
