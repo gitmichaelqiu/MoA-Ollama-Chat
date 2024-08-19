@@ -26,7 +26,7 @@ Mixture of Agents (MoA) is a cutting-edge approach that leverages multiple Large
 3. An aggregate model combines and refines these responses into a final output.
 4. This process can be repeated for multiple rounds, enhancing the quality of the final response.
 
-## Setup and Configuration
+## Installation
 
 1. Clone the repository and navigate to the project directory.
 
@@ -64,7 +64,7 @@ OLLAMA_NUM_PARALLEL=4
 OLLAMA_MAX_LOADED_MODELS=4 
 ```
 
-## Running the Application
+## Usage
 
 1. Start the Ollama server:
 
