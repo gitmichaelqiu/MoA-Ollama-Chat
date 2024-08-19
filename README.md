@@ -52,15 +52,16 @@ API_KEY_2=ollama
 MAX_TOKENS=4096
 TEMPERATURE=0.7
 ROUNDS=1
+NUM_PROC=24
 
-MODEL_AGGREGATE=llama3:70b-instruct-q6_K
+MODEL_AGGREGATE=gemma2:2b
 
-MODEL_REFERENCE_1=phi3:latest 
-MODEL_REFERENCE_2=llama3:latest
-MODEL_REFERENCE_3=phi3:3.8b-mini-instruct-4k-fp16
+MODEL_REFERENCE_1=phi3:3.8b-instruct
+MODEL_REFERENCE_2=phi3:3.8b-instruct
+MODEL_REFERENCE_3=orca-mini:3b
 
 OLLAMA_NUM_PARALLEL=4  
-OLLAMA_MAX_LOADED_MODELS=4
+OLLAMA_MAX_LOADED_MODELS=4 
 ```
 
 ## Running the Application
@@ -75,6 +76,9 @@ OLLAMA_MAX_LOADED_MODELS=4
 
    ```shell
    conda activate moa
+   ```
+
+   ```shell
    gradio app.py
    ```
 
