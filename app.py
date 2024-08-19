@@ -13,20 +13,32 @@ load_dotenv()
 os.environ['OLLAMA_NUM_PARALLEL'] = '4'
 os.environ['OLLAMA_MAX_LOADED_MODELS'] = '4'
 
+def safe_int(value, default):
+    try:
+        return int(value)
+    except (ValueError, TypeError):
+        return default
+    
+def safe_float(value, default):
+    try:
+        return float(value)
+    except (ValueError, TypeError):
+        return default
+
 API_KEY = os.getenv("API_KEY")
 API_BASE = os.getenv("API_BASE")
 API_KEY_2 = os.getenv("API_KEY_2")
 API_BASE_2 = os.getenv("API_BASE_2")
 
-MAX_TOKENS = int(os.getenv("MAX_TOKENS"))
-TEMPERATURE = float(os.getenv("TEMPERATURE"))
-ROUNDS = int(os.getenv("ROUNDS", 1))
-MULTITURN = os.getenv("MULTITURN", "True") == "True"
+MAX_TOKENS = safe_int(os.getenv("MAX_TOKENS"), 2048)
+TEMPERATURE = safe_float(os.getenv("TEMPERATURE"), 0.7)
+ROUNDS = safe_int(os.getenv("ROUNDS"), 1)
+MULTITURN = os.getenv("MULTITURN", "True").lower() == "true"
 
-MODEL_AGGREGATE = os.getenv("MODEL_AGGREGATE")
-MODEL_REFERENCE_1 = os.getenv("MODEL_REFERENCE_1")
-MODEL_REFERENCE_2 = os.getenv("MODEL_REFERENCE_2")
-MODEL_REFERENCE_3 = os.getenv("MODEL_REFERENCE_3")
+MODEL_AGGREGATE = os.getenv("MODEL_AGGREGATE", "MODEL_AGGREGATE")
+MODEL_REFERENCE_1 = os.getenv("MODEL_REFERENCE_1", "MODEL_REFERENCE_1")
+MODEL_REFERENCE_2 = os.getenv("MODEL_REFERENCE_2", "MODEL_REFERENCE_2")
+MODEL_REFERENCE_3 = os.getenv("MODEL_REFERENCE_3", "MODEL_REFERENCE_3")
 
 default_reference_models = [MODEL_REFERENCE_1, MODEL_REFERENCE_2, MODEL_REFERENCE_3]
 
@@ -157,12 +169,17 @@ def create_gradio_interface():
         neutral_hue="gray",
         font=("Helvetica", "sans-serif"),
     ).set(
-        body_background_fill="linear-gradient(to right, #2c5e1a, #4a3728)",
-        body_background_fill_dark="linear-gradient(to right, #1a3c0f, #2e2218)",
-        button_primary_background_fill="#4a3728",
-        button_primary_background_fill_hover="#5c4636",
-        block_title_text_color="#e0d8b0",
-        block_label_text_color="#c1b78f",
+        body_background_fill="#ffffff",  # 亮色主题背景
+        body_background_fill_dark="#000000",  # 暗色主题背景
+        body_text_color="#000000",  # 亮色主题文字颜色
+        body_text_color_dark="#ffffff",  # 暗色主题文字颜色
+        button_primary_background_fill="#E5E7EB",
+        button_primary_background_fill_hover="#C8CCD5",
+        button_primary_background_fill_hover_dark="#1B3F1E",  # 暗色主题按钮悬停背景
+        block_title_text_color="#000000",
+        block_title_text_color_dark="#ffffff",  # 暗色主题 block title 颜色
+        block_label_text_color="#000000",
+        block_label_text_color_dark="#ffffff",  # 暗色主题 block label 颜色
     )
 
     with gr.Blocks(theme=theme) as demo:
@@ -170,11 +187,7 @@ def create_gradio_interface():
             """
             <div style="text-align: center;">
             
-            # Mixture of Agents (MoA) Chat
-            
-            Welcome to the future of AI-powered conversations! This app combines multiple AI models
-            to generate responses, merging their strengths for more accurate and diverse outputs.
-            
+            # Mixture of Agents Chat
             </div>
             """,
             elem_id="centered-markdown"
@@ -199,7 +212,7 @@ def create_gradio_interface():
                     rounds = gr.Slider(minimum=1, maximum=5, step=1, value=int(ROUNDS), label="Rounds")
                     multi_turn = gr.Checkbox(value=MULTITURN, label="Multi-turn Conversation")
                     system_prompt = gr.Textbox(
-                        value="You are a helpful AI assistant.",
+                        value="",
                         label="System Prompt",
                         lines=2
                     )
