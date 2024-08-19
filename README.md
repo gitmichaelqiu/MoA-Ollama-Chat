@@ -6,9 +6,9 @@ This is an advanced implementation of the Mixture-of-Agents (MoA) concept, adapt
 
 Mixture of Agents (MoA) is a cutting-edge approach that leverages multiple Large Language Models (LLMs) to enhance AI performance. By utilizing a layered architecture where each layer consists of several LLM agents, MoA achieves state-of-the-art results using open-source models.
 
-## Gradio Interface
+## Editted Interface
 
-![Gradio UI Screenshot](assets/gradioui.png)
+![Gradio UI Screenshot](assets/whitetheme.png)
 
 ## Key Features
 
