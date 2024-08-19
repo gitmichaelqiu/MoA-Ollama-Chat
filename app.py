@@ -169,17 +169,17 @@ def create_gradio_interface():
         neutral_hue="gray",
         font=("Helvetica", "sans-serif"),
     ).set(
-        body_background_fill="#ffffff",  # 亮色主题背景
-        body_background_fill_dark="#000000",  # 暗色主题背景
-        body_text_color="#000000",  # 亮色主题文字颜色
-        body_text_color_dark="#ffffff",  # 暗色主题文字颜色
+        body_background_fill="#ffffff",
+        body_background_fill_dark="#000000",
+        body_text_color="#000000",
+        body_text_color_dark="#ffffff",
         button_primary_background_fill="#E5E7EB",
         button_primary_background_fill_hover="#C8CCD5",
-        button_primary_background_fill_hover_dark="#1B3F1E",  # 暗色主题按钮悬停背景
+        button_primary_background_fill_hover_dark="#1B3F1E",
         block_title_text_color="#000000",
-        block_title_text_color_dark="#ffffff",  # 暗色主题 block title 颜色
+        block_title_text_color_dark="#ffffff",
         block_label_text_color="#000000",
-        block_label_text_color_dark="#ffffff",  # 暗色主题 block label 颜色
+        block_label_text_color_dark="#ffffff",
     )
 
     with gr.Blocks(theme=theme) as demo:
