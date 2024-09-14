@@ -170,7 +170,7 @@ def create_gradio_interface():
         font=("Helvetica", "sans-serif"),
     ).set(
         body_background_fill="#ffffff",
-        body_background_fill_dark="#000000",
+        body_background_fill_dark="#181818",
         body_text_color="#000000",
         body_text_color_dark="#ffffff",
         button_primary_background_fill="#E5E7EB",
